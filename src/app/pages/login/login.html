@@ -1,0 +1,34 @@
+<div class="login-container">
+
+  <p-card header="Iniciar Sesión" class="login-card">
+
+    <div class="form">
+
+      <div class="field">
+        <label>Usuario</label>
+        <input pInputText [(ngModel)]="usuario" />
+      </div>
+
+      <div class="field">
+        <label>Contraseña</label>
+        <input pInputText type="password" [(ngModel)]="password" />
+      </div>
+
+      <button
+        pButton
+        type="button"
+        label="Ingresar"
+        (click)="login()"
+        class="w-full">
+    </button>
+
+      <div class="register-link">
+        ¿No tienes cuenta?
+        <a routerLink="/register">Regístrate</a>
+      </div>
+
+    </div>
+
+  </p-card>
+
+</div>

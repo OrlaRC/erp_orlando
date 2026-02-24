@@ -1,0 +1,62 @@
+/* Fondo completo */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tarjeta */
+.login-card {
+  width: 380px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Labels */
+.field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Inputs */
+input[pInputText] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Botón */
+.login-btn {
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Link register */
+.register-link {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #2563eb;
+  font-weight: bold;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

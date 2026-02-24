@@ -1,0 +1,42 @@
+<p-toolbar class="navbar">
+  <div class="p-toolbar-group-start">
+    <h2>ERP Orlando 🚀</h2>
+  </div>
+
+  <div class="p-toolbar-group-end">
+    <button
+      pButton
+      label="Cerrar sesión"
+      icon="pi pi-sign-out"
+      severity="danger"
+      (click)="logout()">
+    </button>
+  </div>
+</p-toolbar>
+
+
+<div class="container">
+
+  <h1 class="title">Bienvenido al Sistema 👋</h1>
+  <p class="subtitle">Tu panel principal de trabajo</p>
+
+  <div class="cards">
+
+    <p-card header="Usuarios" subheader="Administrar usuarios">
+      <p>Gestiona registros y accesos del sistema.</p>
+      <button pButton label="Ver más" class="p-button-sm"></button>
+    </p-card>
+
+    <p-card header="Reportes" subheader="Estadísticas">
+      <p>Consulta reportes y métricas del negocio.</p>
+      <button pButton label="Ver más" class="p-button-sm"></button>
+    </p-card>
+
+    <p-card header="Configuración" subheader="Ajustes del sistema">
+      <p>Personaliza parámetros del sistema.</p>
+      <button pButton label="Ver más" class="p-button-sm"></button>
+    </p-card>
+
+  </div>
+
+</div>
