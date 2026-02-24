@@ -5,16 +5,35 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  private usuarioRegistrado = '';
-  private passwordRegistrado = '';
+  private userHard = 'admin';
+  private passHard = 'Admin12345!';
 
   registrar(user: string, pass: string) {
-    this.usuarioRegistrado = user;
-    this.passwordRegistrado = pass;
+    localStorage.setItem('user', user);
+    localStorage.setItem('pass', pass);
   }
 
   login(user: string, pass: string): boolean {
-    return user === this.usuarioRegistrado && pass === this.passwordRegistrado;
+
+    const u = localStorage.getItem('user') || '';
+    const p = localStorage.getItem('pass') || '';
+
+    const loginValido =
+      (user === this.userHard && pass === this.passHard) ||
+      (user === u && pass === p);
+
+    if (loginValido) {
+      localStorage.setItem('logueado', 'true');
+    }
+
+    return loginValido;
   }
 
+  logout() {
+    localStorage.clear(); // 🔥 limpia todo
+  }
+
+  estaLogueado(): boolean {
+    return localStorage.getItem('logueado') === 'true';
+  }
 }

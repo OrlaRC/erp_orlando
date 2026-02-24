@@ -10,13 +10,44 @@
       </div>
 
       <div class="field">
+        <label>Email</label>
+        <input pInputText [(ngModel)]="email" />
+      </div>
+
+      <div class="field">
         <label>Contraseña</label>
         <input pInputText type="password" [(ngModel)]="password" />
       </div>
 
-      <button 
-        pButton 
-        label="Registrarse" 
+      <div class="field">
+        <label>Confirmar contraseña</label>
+        <input pInputText type="password" [(ngModel)]="confirmPassword" />
+      </div>
+
+      <div class="field">
+        <label>Nombre completo</label>
+        <input pInputText [(ngModel)]="nombre" />
+      </div>
+
+      <div class="field">
+        <label>Dirección</label>
+        <input pInputText [(ngModel)]="direccion" />
+      </div>
+
+      <div class="field">
+        <label>Teléfono</label>
+        <input pInputText [(ngModel)]="telefono" />
+      </div>
+
+      <div class="field">
+        <label>Edad</label>
+        <input pInputText type="number" [(ngModel)]="edad" />
+      </div>
+
+      <button
+        pButton
+        type="button"
+        label="Registrarse"
         icon="pi pi-user-plus"
         class="login-btn"
         (click)="registrar()">

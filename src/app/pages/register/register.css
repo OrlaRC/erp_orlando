@@ -1,1 +1,85 @@
-@import '../login/login.css';
+/* Fondo completo */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 40px 20px;
+
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tarjeta */
+.login-card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+}
+
+/* Labels */
+.field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Inputs */
+input[pInputText] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Botón */
+.login-btn {
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Link */
+.register-link {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #2563eb;
+  font-weight: bold;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Errores */
+.error {
+  color: #ff4d4f;
+  font-size: 12px;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 600px) {
+  .login-card {
+    max-width: 95%;
+  }
+
+  .form {
+    gap: 14px;
+  }
+}
