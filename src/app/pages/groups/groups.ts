@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -14,7 +15,9 @@ import { MessageService } from 'primeng/api';
   standalone: true,
   providers: [MessageService],
   imports: [
+    CommonModule,
     FormsModule,
+    RouterModule,
     TableModule,
     ButtonModule,
     DialogModule,
@@ -84,7 +87,11 @@ export class Groups implements OnInit {
   saveGroup() {
 
     if (!this.group.nombre || !this.group.autor) {
-      this.message.add({ severity: 'error', summary: 'Error', detail: 'Campos obligatorios' });
+      this.message.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Campos obligatorios'
+      });
       return;
     }
 
@@ -102,7 +109,7 @@ export class Groups implements OnInit {
     } else {
 
       this.group.id = Date.now();
-      this.groups.push(this.group);
+      this.groups.push({ ...this.group });
 
       this.message.add({
         severity: 'success',
@@ -118,7 +125,9 @@ export class Groups implements OnInit {
 
   // 🔹 Eliminar
   deleteGroup(g: any) {
+
     this.groups = this.groups.filter(x => x.id !== g.id);
+
     this.saveGroups();
 
     this.message.add({

@@ -38,12 +38,12 @@
 
       <td>
 
-        <!-- 👁 VER GRUPO (TABLERO DE TICKETS) -->
+        <!-- 👁 VER GRUPO (TABLERO KANBAN) -->
         <button
           pButton
           icon="pi pi-eye"
           class="p-button-text"
-          (click)="openGroup(g.id)">
+          [routerLink]="['/groups', g.id]">
         </button>
 
         <!-- ✏ EDITAR -->
@@ -69,17 +69,44 @@
 
 </p-table>
 
-<!-- MODAL -->
-<p-dialog header="Grupo" [(visible)]="dialogVisible" [modal]="true" [style]="{width:'400px'}">
+<!-- MODAL CREAR / EDITAR GRUPO -->
+<p-dialog
+  header="Grupo"
+  [(visible)]="dialogVisible"
+  [modal]="true"
+  [style]="{ width: '400px' }">
 
   <div class="form">
 
-    <input pInputText placeholder="Nombre" [(ngModel)]="group.nombre">
-    <input pInputText placeholder="Categoría" [(ngModel)]="group.categoria">
-    <input pInputText placeholder="Nivel" [(ngModel)]="group.nivel">
-    <input pInputText placeholder="Autor" [(ngModel)]="group.autor">
-    <input pInputText placeholder="Miembros" [(ngModel)]="group.miembros">
-    <input pInputText placeholder="Tickets" [(ngModel)]="group.tickets">
+    <input
+      pInputText
+      placeholder="Nombre"
+      [(ngModel)]="group.nombre">
+
+    <input
+      pInputText
+      placeholder="Categoría"
+      [(ngModel)]="group.categoria">
+
+    <input
+      pInputText
+      placeholder="Nivel"
+      [(ngModel)]="group.nivel">
+
+    <input
+      pInputText
+      placeholder="Autor"
+      [(ngModel)]="group.autor">
+
+    <input
+      pInputText
+      placeholder="Miembros"
+      [(ngModel)]="group.miembros">
+
+    <input
+      pInputText
+      placeholder="Tickets"
+      [(ngModel)]="group.tickets">
 
   </div>
 

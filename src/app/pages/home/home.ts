@@ -7,8 +7,6 @@ import { ButtonModule } from 'primeng/button';
 import { TicketService } from '../../services/ticket';
 import { Ticket } from '../../models/ticket.model';
 
-import { CreateTicketDialog } from '../../components/create-ticket-dialog/create-ticket-dialog';
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -16,8 +14,7 @@ import { CreateTicketDialog } from '../../components/create-ticket-dialog/create
     CommonModule,
     CardModule,
     TableModule,
-    ButtonModule,
-    CreateTicketDialog
+    ButtonModule
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'

@@ -1,47 +1,202 @@
+<div class="header">
+
+  <h2>Tablero del Grupo</h2>
+
+  <button
+    pButton
+    label="Crear Ticket"
+    icon="pi pi-plus"
+    class="p-button-success"
+    (click)="openDialog()">
+  </button>
+
+</div>
+
 <div class="kanban">
 
-  <div class="column">
+  <!-- Pendiente -->
+  <div class="column"
+      cdkDropList
+      [cdkDropListData]="pendientes"
+      [cdkDropListConnectedTo]="['progresoList','revisionList','finalizadoList']"
+      id="pendientesList"
+      (cdkDropListDropped)="drop($event,'Pendiente')">
 
     <h3>Pendiente</h3>
 
-    <div class="ticket" *ngFor="let ticket of pendientes">
-      <h4>{{ ticket.titulo }}</h4>
-      <p>{{ ticket.prioridad }}</p>
-    </div>
+    <p-card *ngFor="let t of pendientes" cdkDrag (click)="openTicketDetail(t)">
+      <h4>{{t.titulo}}</h4>
+      <p>{{t.descripcion}}</p>
+      <small>Prioridad: {{t.prioridad}}</small>
+    </p-card>
 
   </div>
 
-  <div class="column">
+  <!-- En progreso -->
+  <div class="column"
+      cdkDropList
+      [cdkDropListData]="progreso"
+      [cdkDropListConnectedTo]="['pendientesList','revisionList','finalizadoList']"
+      id="progresoList"
+      (cdkDropListDropped)="drop($event,'En progreso')">
 
     <h3>En progreso</h3>
 
-    <div class="ticket" *ngFor="let ticket of progreso">
-      <h4>{{ ticket.titulo }}</h4>
-      <p>{{ ticket.prioridad }}</p>
-    </div>
+    <p-card *ngFor="let t of progreso" cdkDrag (click)="openTicketDetail(t)">
+      <h4>{{t.titulo}}</h4>
+      <p>{{t.descripcion}}</p>
+      <small>Prioridad: {{t.prioridad}}</small>
+    </p-card>
 
   </div>
 
-  <div class="column">
+  <!-- Revision -->
+  <div class="column"
+      cdkDropList
+      [cdkDropListData]="revision"
+      [cdkDropListConnectedTo]="['pendientesList','progresoList','finalizadoList']"
+      id="revisionList"
+      (cdkDropListDropped)="drop($event,'Revisión')">
 
     <h3>Revisión</h3>
 
-    <div class="ticket" *ngFor="let ticket of revision">
-      <h4>{{ ticket.titulo }}</h4>
-      <p>{{ ticket.prioridad }}</p>
-    </div>
+    <p-card *ngFor="let t of revision" cdkDrag (click)="openTicketDetail(t)">
+      <h4>{{t.titulo}}</h4>
+      <p>{{t.descripcion}}</p>
+      <small>Prioridad: {{t.prioridad}}</small>
+    </p-card>
 
   </div>
 
-  <div class="column">
+  <!-- Finalizado -->
+  <div class="column"
+      cdkDropList
+      [cdkDropListData]="finalizado"
+      [cdkDropListConnectedTo]="['pendientesList','progresoList','revisionList']"
+      id="finalizadoList"
+      (cdkDropListDropped)="drop($event,'Finalizado')">
 
     <h3>Finalizado</h3>
 
-    <div class="ticket" *ngFor="let ticket of finalizados">
-      <h4>{{ ticket.titulo }}</h4>
-      <p>{{ ticket.prioridad }}</p>
-    </div>
+    <p-card *ngFor="let t of finalizado" cdkDrag (click)="openTicketDetail(t)">
+      <h4>{{t.titulo}}</h4>
+      <p>{{t.descripcion}}</p>
+      <small>Prioridad: {{t.prioridad}}</small>
+    </p-card>
 
   </div>
 
 </div>
+
+
+<!-- CREAR TICKET -->
+
+<p-dialog header="Crear Ticket" [(visible)]="dialogVisible" [modal]="true">
+
+  <div class="form">
+
+    <div class="field">
+      <label>Título</label>
+      <input pInputText [(ngModel)]="ticket.titulo"/>
+    </div>
+
+    <div class="field">
+      <label>Descripción</label>
+      <textarea rows="4" [(ngModel)]="ticket.descripcion"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Asignado a</label>
+      <input pInputText [(ngModel)]="ticket.asignadoA"/>
+    </div>
+
+  </div>
+
+  <ng-template pTemplate="footer">
+
+    <button
+      pButton
+      label="Cancelar"
+      class="p-button-secondary"
+      (click)="dialogVisible=false">
+    </button>
+
+    <button
+      pButton
+      label="Crear"
+      class="p-button-success"
+      (click)="createTicket()">
+    </button>
+
+  </ng-template>
+
+</p-dialog>
+
+
+<!-- DETALLE DEL TICKET -->
+
+<p-dialog header="Detalle del Ticket"
+[(visible)]="detailDialogVisible"
+[modal]="true"
+[style]="{width:'600px'}">
+
+<div *ngIf="selectedTicket">
+
+<div class="field">
+<label>Título</label>
+<p>{{selectedTicket.titulo}}</p>
+</div>
+
+<div class="field">
+<label>Descripción</label>
+<p>{{selectedTicket.descripcion}}</p>
+</div>
+
+<div class="field">
+<label>Estado</label>
+<p>{{selectedTicket.estado}}</p>
+</div>
+
+<div class="field">
+<label>Asignado</label>
+<p>{{selectedTicket.asignadoA || 'Sin asignar'}}</p>
+</div>
+
+<div class="field">
+<label>Prioridad</label>
+
+<select [(ngModel)]="selectedTicket.prioridad">
+<option *ngFor="let p of prioridades" [value]="p">
+{{p}}
+</option>
+</select>
+
+</div>
+
+<h3>Comentarios</h3>
+
+<div class="comments">
+
+<div *ngFor="let c of selectedTicket.comentarios">
+{{c.mensaje}} - {{c.fecha | date:'short'}}
+</div>
+
+</div>
+
+<textarea [(ngModel)]="newComment" placeholder="Agregar comentario"></textarea>
+
+<button pButton label="Comentar" (click)="addComment()"></button>
+
+<h3>Historial</h3>
+
+<ul>
+
+<li *ngFor="let h of selectedTicket.historial">
+{{h.fecha | date:'short'}} - {{h.campo}}: {{h.valorAnterior}} → {{h.valorNuevo}} ({{h.usuario}})
+</li>
+
+</ul>
+
+</div>
+
+</p-dialog>

@@ -1,18 +1,125 @@
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
 .kanban{
-  display:flex;
-  gap:20px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
 }
 
 .column{
-  flex:1;
-  background:#1e1e1e;
-  padding:15px;
-  border-radius:8px;
+background:#f4f4f4;
+padding:15px;
+border-radius:10px;
+min-height:400px;
 }
 
-.ticket{
-  background:#2b2b2b;
-  padding:10px;
-  margin-top:10px;
-  border-radius:6px;
+.column h3{
+text-align:center;
+margin-bottom:15px;
+color:#333;
+font-weight:600;
+}
+
+p-card{
+display:block;
+margin-bottom:12px;
+border-radius:8px;
+cursor:grab;
+}
+
+.form{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-top:10px;
+}
+
+.field{
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+
+.field label{
+font-size:14px;
+font-weight:600;
+color:#ccc;
+}
+
+.field input,
+.field textarea{
+width:100%;
+padding:8px;
+border-radius:6px;
+border:1px solid #444;
+background:#1f1f1f;
+color:white;
+}
+
+p-card h4{
+margin-bottom:6px;
+}
+
+p-card p{
+margin-bottom:6px;
+font-size:14px;
+}
+
+p-card small{
+color:#666;
+}
+
+/* Drag styles */
+
+.cdk-drag-preview{
+box-shadow:0 5px 10px rgba(0,0,0,0.3);
+}
+
+.cdk-drag-placeholder{
+opacity:0.3;
+}
+
+.cdk-drag-animating{
+transition:transform 0.2s;
+}
+
+.comments{
+margin-bottom:10px;
+}
+
+.comments div{
+background:#eee;
+padding:6px;
+margin-bottom:5px;
+border-radius:5px;
+}
+
+textarea{
+width:100%;
+margin-top:10px;
+margin-bottom:10px;
+padding:6px;
+}
+
+.comments{
+margin-bottom:10px;
+}
+
+.comments div{
+background:#eee;
+padding:6px;
+margin-bottom:5px;
+border-radius:5px;
+}
+
+textarea{
+width:100%;
+margin-top:10px;
+margin-bottom:10px;
+padding:6px;
 }
