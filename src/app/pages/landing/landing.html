@@ -1,40 +1,62 @@
+<!-- HEADER -->
 <p-toolbar class="navbar">
+
   <div class="p-toolbar-group-start">
-    <h2>ERP Orlando 🚀</h2>
+    <h2 class="logo">ERP Orlando 🚀</h2>
   </div>
 
   <div class="p-toolbar-group-end">
     <button
       pButton
-      label="Cerrar sesión"
-      icon="pi pi-sign-out"
-      severity="danger"
-      (click)="logout()">
+      label="Iniciar sesión"
+      icon="pi pi-sign-in"
+      class="p-button-text"
+      (click)="irLogin()">
+    </button>
+
+    <button
+      pButton
+      label="Registrarse"
+      icon="pi pi-user-plus"
+      severity="success"
+      (click)="irRegister()">
     </button>
   </div>
+
 </p-toolbar>
 
 
+<!-- CONTENIDO -->
 <div class="container">
 
-  <h1 class="title">Bienvenido al Sistema 👋</h1>
-  <p class="subtitle">Tu panel principal de trabajo</p>
+  <h1 class="title">Historia del Rap 🎤</h1>
+
+  <p class="subtitle">
+    El rap es un género musical nacido en los barrios del Bronx, Nueva York,
+    en la década de 1970. Forma parte de la cultura Hip-Hop junto con el DJing,
+    el breakdance y el graffiti.
+  </p>
 
   <div class="cards">
 
-    <p-card header="Usuarios" subheader="Administrar usuarios">
-      <p>Gestiona registros y accesos del sistema.</p>
-      <button pButton label="Ver más" class="p-button-sm"></button>
+    <p-card header="Origen" subheader="Década de 1970">
+      <p>
+        Surgió en comunidades afroamericanas y latinas como una forma
+        de expresión social.
+      </p>
     </p-card>
 
-    <p-card header="Reportes" subheader="Estadísticas">
-      <p>Consulta reportes y métricas del negocio.</p>
-      <button pButton label="Ver más" class="p-button-sm"></button>
+    <p-card header="Evolución" subheader="Años 90">
+      <p>
+        Se popularizó mundialmente con artistas que lo llevaron a la
+        industria musical.
+      </p>
     </p-card>
 
-    <p-card header="Configuración" subheader="Ajustes del sistema">
-      <p>Personaliza parámetros del sistema.</p>
-      <button pButton label="Ver más" class="p-button-sm"></button>
+    <p-card header="Actualidad" subheader="Siglo XXI">
+      <p>
+        Hoy es uno de los géneros más influyentes del mundo.
+      </p>
     </p-card>
 
   </div>

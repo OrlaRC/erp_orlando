@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -11,7 +11,8 @@ import { ToolbarModule } from 'primeng/toolbar';
   imports: [
     CardModule,
     ButtonModule,
-    ToolbarModule
+    ToolbarModule,
+    RouterModule   // 👈 IMPORTANTE
   ],
   templateUrl: './landing.html',
   styleUrl: './landing.css'
@@ -20,8 +21,11 @@ export class Landing {
 
   constructor(private router: Router) {}
 
-  logout() {
+  irLogin() {
     this.router.navigate(['/login']);
   }
 
+  irRegister() {
+    this.router.navigate(['/register']);
+  }
 }

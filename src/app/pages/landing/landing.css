@@ -1,6 +1,20 @@
 .navbar {
   background: #2563eb;
   color: white;
+  padding: 10px 20px;
+}
+
+.logo {
+  margin: 0;
+}
+
+.navbar ::ng-deep .p-button {
+  margin-left: 10px;
+}
+
+.navbar {
+  background: #2563eb;
+  color: white;
 }
 
 .container {
