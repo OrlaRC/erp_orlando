@@ -1,26 +1,39 @@
 <div class="login-container">
 
+  <p-toast></p-toast>
+
   <p-card header="Iniciar Sesión" class="login-card">
 
     <div class="form">
 
       <div class="field">
         <label>Usuario</label>
-        <input pInputText [(ngModel)]="usuario" />
+        <input
+          pInputText
+          [(ngModel)]="usuario"
+        />
       </div>
 
       <div class="field">
         <label>Contraseña</label>
-        <input pInputText type="password" [(ngModel)]="password" />
+
+        <p-password
+          [(ngModel)]="password"
+          [feedback]="false"
+          [toggleMask]="true"
+          inputStyleClass="w-full">
+        </p-password>
+
       </div>
 
       <button
         pButton
         type="button"
         label="Ingresar"
+        icon="pi pi-sign-in"
         (click)="login()"
         class="w-full">
-    </button>
+      </button>
 
       <div class="register-link">
         ¿No tienes cuenta?

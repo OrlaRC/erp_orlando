@@ -8,32 +8,51 @@ export class AuthService {
   private userHard = 'admin';
   private passHard = 'Admin12345!';
 
-  registrar(user: string, pass: string) {
-    localStorage.setItem('user', user);
-    localStorage.setItem('pass', pass);
+  // REGISTRAR USUARIO
+  registrar(usuario: any) {
+    localStorage.setItem('usuarioRegistrado', JSON.stringify(usuario));
   }
 
+  // LOGIN
   login(user: string, pass: string): boolean {
 
-    const u = localStorage.getItem('user') || '';
-    const p = localStorage.getItem('pass') || '';
+    const data = localStorage.getItem('usuarioRegistrado');
+    const usuario = data ? JSON.parse(data) : null;
 
     const loginValido =
       (user === this.userHard && pass === this.passHard) ||
-      (user === u && pass === p);
+      (usuario && user === usuario.usuario && pass === usuario.password);
 
     if (loginValido) {
       localStorage.setItem('logueado', 'true');
+
+      if (usuario) {
+        localStorage.setItem('usuarioActivo', JSON.stringify(usuario));
+      }
     }
 
     return loginValido;
   }
 
-  logout() {
-    localStorage.clear(); // 🔥 limpia todo
+  // OBTENER USUARIO ACTUAL
+  obtenerUsuario() {
+    const data = localStorage.getItem('usuarioActivo');
+    return data ? JSON.parse(data) : null;
   }
 
+  // LOGOUT
+  logout() {
+    localStorage.removeItem('logueado');
+    localStorage.removeItem('usuarioActivo');
+  }
+
+  // VALIDAR SESIÓN
   estaLogueado(): boolean {
-    return localStorage.getItem('logueado') === 'true';
+
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      return localStorage.getItem('logueado') === 'true';
+    }
+
+    return false;
   }
 }

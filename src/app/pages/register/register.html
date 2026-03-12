@@ -1,55 +1,159 @@
 <div class="login-container">
 
+  <p-toast position="top-right"></p-toast>
+
   <p-card header="Crear Cuenta" class="login-card">
 
     <div class="form">
 
+      <!-- Usuario -->
       <div class="field">
         <label>Usuario</label>
-        <input pInputText [(ngModel)]="usuario" />
+        <input
+          pInputText
+          maxlength="20"
+          [(ngModel)]="usuario"
+          (ngModelChange)="usuario = limpiarEspacios($event)"
+        />
       </div>
 
+      <!-- Email -->
       <div class="field">
         <label>Email</label>
-        <input pInputText [(ngModel)]="email" />
+        <input
+          pInputText
+          type="email"
+          maxlength="50"
+          [(ngModel)]="email"
+          (ngModelChange)="email = limpiarEspacios($event)"
+        />
       </div>
 
+      <!-- Contraseña -->
       <div class="field">
         <label>Contraseña</label>
-        <input pInputText type="password" [(ngModel)]="password" />
+
+        <p-password
+          [(ngModel)]="password"
+          [feedback]="false"
+          [toggleMask]="true"
+          inputStyleClass="w-full">
+        </p-password>
+
+        <small *ngIf="password.length > 0" class="hint">
+          Debe tener:
+          <ul>
+            <li [class.valid]="password.length >= 10">
+              Mínimo 10 caracteres
+            </li>
+
+            <li [class.valid]="password.match(/[A-Z]/)">
+              Una mayúscula
+            </li>
+
+            <li [class.valid]="password.match(/\d/)">
+              Un número
+            </li>
+
+            <li [class.valid]="password.match(/[!@#$%^&*]/)">
+              Un símbolo (!@#$%^&*)
+            </li>
+          </ul>
+        </small>
+
       </div>
 
+      <!-- Confirmar contraseña -->
       <div class="field">
         <label>Confirmar contraseña</label>
-        <input pInputText type="password" [(ngModel)]="confirmPassword" />
+
+        <p-password
+          [(ngModel)]="confirmPassword"
+          [feedback]="false"
+          [toggleMask]="true"
+          inputStyleClass="w-full">
+        </p-password>
+
+        <small
+          *ngIf="confirmPassword"
+          [class.valid]="passwordsCoinciden"
+          class="hint">
+          {{ passwordsCoinciden ? '✔ Coinciden' : '✖ No coinciden' }}
+        </small>
       </div>
 
+      <!-- Nombre -->
       <div class="field">
         <label>Nombre completo</label>
-        <input pInputText [(ngModel)]="nombre" />
+        <input
+          pInputText
+          maxlength="60"
+          [(ngModel)]="nombre"
+          (ngModelChange)="nombre = limpiarEspacios($event)"
+        />
       </div>
 
+      <!-- Dirección -->
       <div class="field">
         <label>Dirección</label>
-        <input pInputText [(ngModel)]="direccion" />
+        <input
+          pInputText
+          maxlength="100"
+          [(ngModel)]="direccion"
+          (ngModelChange)="direccion = limpiarEspacios($event)"
+        />
       </div>
 
+      <!-- Teléfono -->
       <div class="field">
         <label>Teléfono</label>
-        <input pInputText [(ngModel)]="telefono" />
+        <input
+          pInputText
+          maxlength="13"
+          [(ngModel)]="telefono"
+          (keypress)="soloNumeros($event)"
+        />
+
+        <small
+          *ngIf="telefono"
+          [class.valid]="telefonoValido"
+          class="hint">
+          {{ telefonoValido ? '✔ Teléfono válido' : '✖ Debe tener entre 10 y 13 números' }}
+        </small>
       </div>
 
+      <!-- Edad -->
       <div class="field">
         <label>Edad</label>
-        <input pInputText type="number" [(ngModel)]="edad" />
+
+        <p-inputNumber
+          [(ngModel)]="edad"
+          [min]="0"
+          [max]="120"
+          [useGrouping]="false"
+          [minFractionDigits]="0"
+          [maxFractionDigits]="0"
+          inputId="edad">
+        </p-inputNumber>
+
+        <small
+          *ngIf="edad !== null"
+          [class.valid]="esMayorEdad"
+          class="hint">
+
+          {{ esMayorEdad ? '✔ Eres mayor de edad' : '✖ Debes ser mayor de 18 años' }}
+
+        </small>
       </div>
 
+      <!-- Botón -->
       <button
         pButton
         type="button"
         label="Registrarse"
         icon="pi pi-user-plus"
         class="login-btn"
+        [disabled]="!formularioValido"
         (click)="registrar()">
       </button>
 

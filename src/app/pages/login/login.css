@@ -43,6 +43,35 @@ input[pInputText] {
   font-weight: bold;
 }
 
+/* Toast negro como en register */
+:host ::ng-deep .p-toast .p-toast-message {
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+}
+
+/* éxito */
+:host ::ng-deep .p-toast .p-toast-message-success {
+  background: #111;
+  border-left: 5px solid #22c55e;
+}
+
+/* error */
+:host ::ng-deep .p-toast .p-toast-message-error {
+  background: #111;
+  border-left: 5px solid #ef4444;
+}
+
+/* texto */
+:host ::ng-deep .p-toast-summary {
+  color: #fff;
+  font-weight: bold;
+}
+
+:host ::ng-deep .p-toast-detail {
+  color: #ddd;
+}
+
 /* Link register */
 .register-link {
   text-align: center;
