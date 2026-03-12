@@ -1,0 +1,28 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+
+import { AuthService } from '../../services/auth';
+
+@Component({
+  selector: 'app-navbar',
+  standalone: true,
+  imports: [ToolbarModule, ButtonModule],
+  templateUrl: './navbar.html',
+  styleUrl: './navbar.css'
+})
+export class Navbar {
+
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/']);
+  }
+
+}

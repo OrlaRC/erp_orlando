@@ -1,0 +1,101 @@
+<div class="dashboard">
+
+  <div class="header">
+    <h2>Home ERP</h2>
+    <p>{{ today | date:'fullDate' }}</p>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards">
+
+    <p-card header="Usuarios">
+      <h3>{{ totalUsers }}</h3>
+      <small>Total registrados</small>
+    </p-card>
+
+    <p-card header="Grupos">
+      <h3>{{ totalGroups }}</h3>
+      <small>Total creados</small>
+    </p-card>
+
+    <p-card header="Último Usuario">
+      <h3>{{ lastUser.nombre }}</h3>
+      <small>{{ lastUser.fecha | date:'short' }}</small>
+    </p-card>
+
+  </div>
+
+  <!-- Tabla usuarios -->
+  <div class="table-section">
+
+    <h3>Usuarios</h3>
+
+    <p-table [value]="users">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Grupo</th>
+          <th>Fecha</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.nombre }}</td>
+          <td>{{ user.grupo }}</td>
+          <td>{{ user.fecha | date:'short' }}</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+  </div>
+
+  <!-- Tabla tickets -->
+  <div class="table-section">
+
+    <div class="tickets-header">
+
+      <h3>Tickets recientes</h3>
+
+      <button
+        pButton
+        label="Nuevo Ticket"
+        icon="pi pi-plus"
+        (click)="dialog.open()">
+      </button>
+
+    </div>
+
+    <app-create-ticket-dialog #dialog></app-create-ticket-dialog>
+
+    <p-table [value]="tickets">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Estado</th>
+          <th>Prioridad</th>
+          <th>Asignado</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-ticket>
+        <tr>
+          <td>{{ ticket.id }}</td>
+          <td>{{ ticket.titulo }}</td>
+          <td>{{ ticket.estado }}</td>
+          <td>{{ ticket.prioridad }}</td>
+          <td>{{ ticket.asignadoA }}</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+  </div>
+
+</div>

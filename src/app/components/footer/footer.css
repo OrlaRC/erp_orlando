@@ -1,0 +1,28 @@
+.footer {
+  background: #111;
+  color: white;
+  padding: 30px 0;
+  margin-top: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.footer-section a:hover {
+  color: #fff;
+}

@@ -1,0 +1,47 @@
+<div class="kanban">
+
+  <div class="column">
+
+    <h3>Pendiente</h3>
+
+    <div class="ticket" *ngFor="let ticket of pendientes">
+      <h4>{{ ticket.titulo }}</h4>
+      <p>{{ ticket.prioridad }}</p>
+    </div>
+
+  </div>
+
+  <div class="column">
+
+    <h3>En progreso</h3>
+
+    <div class="ticket" *ngFor="let ticket of progreso">
+      <h4>{{ ticket.titulo }}</h4>
+      <p>{{ ticket.prioridad }}</p>
+    </div>
+
+  </div>
+
+  <div class="column">
+
+    <h3>Revisión</h3>
+
+    <div class="ticket" *ngFor="let ticket of revision">
+      <h4>{{ ticket.titulo }}</h4>
+      <p>{{ ticket.prioridad }}</p>
+    </div>
+
+  </div>
+
+  <div class="column">
+
+    <h3>Finalizado</h3>
+
+    <div class="ticket" *ngFor="let ticket of finalizados">
+      <h4>{{ ticket.titulo }}</h4>
+      <p>{{ ticket.prioridad }}</p>
+    </div>
+
+  </div>
+
+</div>

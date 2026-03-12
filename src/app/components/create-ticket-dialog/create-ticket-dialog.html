@@ -1,0 +1,91 @@
+<p-dialog
+  header="Crear Ticket"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '500px' }"
+>
+
+  <div class="form-grid">
+
+    <div class="field">
+      <label>Título</label>
+      <input
+        pInputText
+        [(ngModel)]="ticket.titulo"
+        class="full">
+    </div>
+
+    <div class="field">
+      <label>Descripción</label>
+      <p-textarea
+        rows="3"
+        [(ngModel)]="ticket.descripcion"
+        class="full">
+      </p-textarea>
+    </div>
+
+    <div class="field">
+      <label>Asignado a</label>
+      <input
+        pInputText
+        [(ngModel)]="ticket.asignadoA"
+        class="full">
+    </div>
+
+    <div class="row">
+
+      <div class="field half">
+        <label>Prioridad</label>
+        <p-select
+            [options]="prioridades"
+            optionLabel="name"
+            optionValue="value"
+            [(ngModel)]="ticket.prioridad"
+            appendTo="body"
+            class="full">
+        </p-select>
+      </div>
+
+      <div class="field half">
+        <label>Estado</label>
+        <p-select
+            [options]="estados"
+            optionLabel="name"
+            optionValue="value"
+            [(ngModel)]="ticket.estado"
+            appendTo="body"
+            class="full">
+        </p-select>
+      </div>
+
+    </div>
+
+    <div class="field">
+      <label>Fecha límite</label>
+      <p-datepicker
+        [(ngModel)]="ticket.fechaLimite"
+        class="full">
+      </p-datepicker>
+    </div>
+
+  </div>
+
+  <ng-template pTemplate="footer">
+
+    <button
+      pButton
+      label="Cancelar"
+      class="p-button-text"
+      (click)="close()">
+    </button>
+
+    <button
+      pButton
+      label="Crear Ticket"
+      icon="pi pi-check"
+      (click)="createTicket()">
+    </button>
+
+  </ng-template>
+
+</p-dialog>

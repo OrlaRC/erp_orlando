@@ -1,0 +1,87 @@
+<p-toast></p-toast>
+
+<div class="header">
+  <h2>Gestión de Usuarios</h2>
+
+  <button
+    pButton
+    label="Nuevo Usuario"
+    icon="pi pi-plus"
+    class="p-button-success"
+    (click)="newUser()">
+  </button>
+</div>
+
+<p-table [value]="users" stripedRows>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Grupo</th>
+      <th>Fecha Registro</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-u>
+    <tr>
+      <td>{{ u.id }}</td>
+      <td>{{ u.nombre }}</td>
+      <td>{{ u.grupo }}</td>
+      <td>{{ u.fechaRegistro }}</td>
+      <td>
+        <button pButton icon="pi pi-pencil"
+          class="p-button-text"
+          (click)="editUser(u)">
+        </button>
+
+        <button pButton icon="pi pi-trash"
+          class="p-button-text p-button-danger"
+          (click)="deleteUser(u)">
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+
+<p-dialog header="Usuario"
+  [(visible)]="dialogVisible"
+  [modal]="true"
+  [style]="{width:'400px'}">
+
+  <div class="form">
+
+    <input pInputText
+      placeholder="Nombre"
+      [(ngModel)]="user.nombre">
+
+    <p-select
+    [options]="groups"
+    optionLabel="nombre"
+    optionValue="nombre"
+    [(ngModel)]="user.grupo"
+    placeholder="Seleccionar grupo"
+    appendTo="body">
+    </p-select>
+
+  </div>
+
+  <ng-template pTemplate="footer">
+
+    <button pButton
+      label="Cancelar"
+      class="p-button-secondary"
+      (click)="dialogVisible=false">
+    </button>
+
+    <button pButton
+      label="Guardar"
+      class="p-button-success"
+      (click)="saveUser()">
+    </button>
+
+  </ng-template>
+
+</p-dialog>

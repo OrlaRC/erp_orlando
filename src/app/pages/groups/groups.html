@@ -1,0 +1,104 @@
+<p-toast></p-toast>
+
+<div class="header">
+  <h2>Gestión de Groups</h2>
+
+  <button
+    pButton
+    label="Nuevo Grupo"
+    icon="pi pi-plus"
+    class="p-button-success"
+    (click)="newGroup()">
+  </button>
+</div>
+
+<p-table [value]="groups" stripedRows>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Categoría</th>
+      <th>Nivel</th>
+      <th>Autor</th>
+      <th>Miembros</th>
+      <th>Tickets</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-g>
+    <tr>
+
+      <td>{{ g.nombre }}</td>
+      <td>{{ g.categoria }}</td>
+      <td>{{ g.nivel }}</td>
+      <td>{{ g.autor }}</td>
+      <td>{{ g.miembros }}</td>
+      <td>{{ g.tickets }}</td>
+
+      <td>
+
+        <!-- 👁 VER GRUPO (TABLERO DE TICKETS) -->
+        <button
+          pButton
+          icon="pi pi-eye"
+          class="p-button-text"
+          (click)="openGroup(g.id)">
+        </button>
+
+        <!-- ✏ EDITAR -->
+        <button
+          pButton
+          icon="pi pi-pencil"
+          class="p-button-text"
+          (click)="editGroup(g)">
+        </button>
+
+        <!-- 🗑 ELIMINAR -->
+        <button
+          pButton
+          icon="pi pi-trash"
+          class="p-button-text p-button-danger"
+          (click)="deleteGroup(g)">
+        </button>
+
+      </td>
+
+    </tr>
+  </ng-template>
+
+</p-table>
+
+<!-- MODAL -->
+<p-dialog header="Grupo" [(visible)]="dialogVisible" [modal]="true" [style]="{width:'400px'}">
+
+  <div class="form">
+
+    <input pInputText placeholder="Nombre" [(ngModel)]="group.nombre">
+    <input pInputText placeholder="Categoría" [(ngModel)]="group.categoria">
+    <input pInputText placeholder="Nivel" [(ngModel)]="group.nivel">
+    <input pInputText placeholder="Autor" [(ngModel)]="group.autor">
+    <input pInputText placeholder="Miembros" [(ngModel)]="group.miembros">
+    <input pInputText placeholder="Tickets" [(ngModel)]="group.tickets">
+
+  </div>
+
+  <ng-template pTemplate="footer">
+
+    <button
+      pButton
+      label="Cancelar"
+      class="p-button-secondary"
+      (click)="dialogVisible=false">
+    </button>
+
+    <button
+      pButton
+      label="Guardar"
+      class="p-button-success"
+      (click)="saveGroup()">
+    </button>
+
+  </ng-template>
+
+</p-dialog>
